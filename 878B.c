@@ -27,6 +27,11 @@ int main() {
         } else {
             a[Top][0]=a[i][0];
             a[Top++][1]=a[i++][1];
+            h[a[j][1]] ++;
+            if (h[a[j][1]] >= k) {
+                break;
+            }
+            i = j;
             j++;
         }
     }
