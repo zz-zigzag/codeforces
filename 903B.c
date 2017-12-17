@@ -17,11 +17,13 @@ int main() {
     int nc, na, remain;
     scanf("%d%d%d%d%d", &h1, &a1, &c, &h2, &a2);
     na = (int)ceil(h2 * 1.0 / a1);
+
     remain = (na - 1)*a2 - h1;
     if (remain >= 0) {
-        nc = (int)ceil(remain*1.0/(c-a2) + EXP);
+        nc = remain / (c - a2) + 1;
+    } else {
+        nc = 0;
     }
-
     printf("%d\n", na + nc);
     for (int i = 0; i < nc; ++i) {
         puts("HEAL");
