@@ -3,12 +3,36 @@
 using namespace std;
 
 const int mod = 1000000007;
-const ll inf = 1e18;
+const long long inf = 1e18;
 const int maxn = 100010;
 
 int a[maxn];
-int n, k, l;
+bool v[maxn];
 
+void solve() {
+    int n, k, l;
+    scanf("%d%d%d", &n, &k, &l);
+    int len = n*k;
+    long long ans = 0;
+    for(int i = 0; i < len; ++i)
+        scanf("%d", &a[i]);
+    sort(a, a+len);
+    int cnt = 0;
+    for (int i = 0; i < len && a[i] - a[0] <= l; i += k)
+        cnt++, v[i] = true, ans += a[i];
+    for (int i = len - 1; i && cnt < n; --i)
+        if (a[i] - a[0] <= l && !v[i])
+            cnt++, v[i] = true, ans += a[i];
+    printf("%I64d\n", cnt == n ? ans : 0ll);
+    return ;
+}
+int main() {
+    solve();
+    return 0;
+}
+
+
+/*
 int solve() {
     scanf("%d%d%d", &n, &k, &l);
     int len = n*k;
@@ -37,6 +61,7 @@ int solve() {
         sum+=a[i];
     return printf("%I64d\n", sum);
 }
+*/
 int main() {
     solve();
     return 0;
