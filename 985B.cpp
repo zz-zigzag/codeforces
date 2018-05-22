@@ -16,10 +16,6 @@ typedef vector<pi> vpi;
 typedef vector<pl> vpl;
 
 
-#define FOR(i, a, b) for (int i=a; i<(b); i++)
-#define F0R(i, a) for (int i=0; i<(a); i++)
-#define FORd(i,a,b) for (int i = (b)-1; i >= a; i--)
-#define F0Rd(i,a) for (int i = (a)-1; i >= 0; i--)
 
 #define sz(x) (int)(x).size()
 #define mp make_pair
@@ -30,12 +26,12 @@ typedef vector<pl> vpl;
 #define ub upper_bound
 #define all(x) x.begin(), x.end()
 
-const int MOD = 1000000007;
-const ll INF = 1e18;
-const int MX = 2010;
-char a[MX][MX];
+const int mod = 1000000007;
+const ll inf = 1e18;
+const int maxn = 2010;
+char a[maxn][maxn];
 int n, m;
-
+/*
 bool isIgnoreOk(int lamp, int ignore) {
     F0R(j, n) {
         if (j == ignore) continue;
@@ -66,6 +62,26 @@ void solve() {
         }
     }
     puts("NO");
+}
+
+*/
+
+bool flag[maxn];
+
+int solve() {
+    cin>>n>>m;
+    for(int i = 0; i < n; i++)
+        scanf("%s", a[i]);
+    for (int i = 0; i < m; ++i) {
+        int cnt = 0, t;
+        for (int j = 0; j < n; ++j)
+            if (a[j][i] == '1') cnt++, t = j;
+        if (cnt == 1) flag[t] = true;
+    }
+    for (int i = 0; i < n; ++i)
+        if (!flag[i])
+            return puts("YES");
+    return puts("NO");
 }
 int main() {
     ios_base::sync_with_stdio(0);
